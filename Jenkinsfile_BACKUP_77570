@@ -1,6 +1,7 @@
 pipeline {
     agent {
         docker {
+<<<<<<< HEAD
             image 'node:6-alpine'
             args '-p 3000:3000'
         }
@@ -17,15 +18,17 @@ pipeline {
         stage('Test') { 
             steps {
                 sh './jenkins/scripts/test.sh' 
+=======
+            image 'node:6-alpine' 
+            args '-p 3000:3000' 
+        }
+    }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'npm install' 
+>>>>>>> dfbf25929aab5b4fa3a7b6395951d01ae6120eec
             }
         }
     }
-stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
-            }
-        }
 }
-
